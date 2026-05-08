@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de eventos de tecnologia gratuitos em Brasília 2026">
+    <meta name="keywords" content="eventos, tecnologia, Brasília, 2026, Python, JavaScript, DevOps">
+    <title>Eventos de Tecnologia em Brasília 2026</title>
+    
+    <style>
+        /* Reset e Variáveis CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #7c3aed;
+            --primary-blue: #2563eb;
+            --light-purple: #a78bfa;
+            --light-blue: #60a5fa;
+            --dark-purple: #5b21b6;
+            --dark-blue: #1e40af;
+            --gray-light: #f3f4f6;
+            --gray-dark: #1f2937;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(124, 58, 237, 0.15);
+        }
+
+        /* Tipografia e Corpo */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-dark);
+            background: linear-gradient(135deg, #f3f4f6 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        /* Header e Navegação */
+        header {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--light-purple);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 50%, var(--light-blue) 100%);
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideUp 0.6s ease-out 0.2s backwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--white);
+            color: var(--primary-purple);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-purple);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Seção About */
+        .about {
+            padding: 4rem 1rem;
+            background: var(--white);
+            margin: 2rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .about h2 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about p {
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Grid de Objetivos */
+        .objectives {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            color: var(--white);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .objective-card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Seção de Eventos */
+        .events-section {
+            padding: 4rem 1rem;
+        }
+
+        .events-section h2 {
+            color: var(--primary-purple);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Grid de Cards de Eventos */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-purple);
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-card-header {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+        }
+
+        .event-card-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .event-card-body {
+            padding: 1.5rem;
+        }
+
+        .event-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .event-info strong {
+            color: var(--primary-purple);
+            min-width: 70px;
+        }
+
+        .event-schedule {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .event-schedule h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .event-schedule ul {
+            list-style-position: inside;
+            color: var(--gray-dark);
+        }
+
+        .event-schedule li {
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+
+        /* Tabela de Endereços */
+        .addresses-section {
+            padding: 3rem 1rem;
+            background: var(--white);
+            margin: 2rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .addresses-section h2 {
+            color: var(--primary-purple);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+            color: var(--gray-dark);
+        }
+
+        tbody tr:hover {
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+
+        /* Seção de Dicas */
+        .tips-section {
+            padding: 3rem 1rem;
+        }
+
+        .tips-section h2 {
+            color: var(--primary-purple);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-purple) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-card strong {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Seção de Categorias */
+        .categories-section {
+            padding: 3rem 1rem;
+            background: var(--white);
+            margin: 2rem 0;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .categories-section h2 {
+            color: var(--primary-purple);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-badge {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-purple) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 3rem 1rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-purple);
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--light-purple);
+            margin-left: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-purple);
+            transform: translateY(-3px);
+            margin: 0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--light-purple);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .about, .addresses-section, .categories-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                padding: 0.5rem;
+            }
+
+            .objectives {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🚀 Tech Events</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#localizacao">Localização</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>🚀 Eventos de Tecnologia em Brasília 2026</h1>
+            <p>Bem-vindo ao portal de eventos de tecnologia gratuitos em Brasília! Descubra as principais oportunidades de aprendizado, networking e inovação.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Ver Eventos</button>
+                <button class="btn btn-secondary">Saiba Mais</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- About Section -->
+            <section class="about">
+                <h2>📋 Sobre o Projeto</h2>
+                <p>Este projeto foi desenvolvido para centralizar informações sobre eventos tecnológicos gratuitos realizados em Brasília durante o ano de 2026, facilitando o acesso de profissionais, estudantes e entusiastas de tecnologia.</p>
+                
+                <h3 style="color: var(--primary-blue); margin-top: 2rem; margin-bottom: 1rem;">🎯 Nossos Objetivos</h3>
+                <div class="objectives">
+                    <div class="objective-card">
+                        <span>✅</span>
+                        <strong>Divulgar Eventos</strong>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Compartilhar eventos de tecnologia gratuitos</p>
+                    </div>
+                    <div class="objective-card">
+                        <span>📍</span>
+                        <strong>Localização</strong>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Fornecer informações precisas de endereço</p>
+                    </div>
+                    <div class="objective-card">
+                        <span>🎓</span>
+                        <strong>Aprendizado</strong>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Facilitar acesso a oportunidades de conhecimento</p>
+                    </div>
+                    <div class="objective-card">
+                        <span>🤝</span>
+                        <strong>Comunidade</strong>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Conectar a comunidade tech local</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Events Section -->
+        <section class="events-section" id="eventos">
+            <div class="container">
+                <h2>📍 Eventos em Destaque 2026</h2>
+                
+                <div class="events-grid">
+                    <!-- Event 1 -->
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>Tech Summit Brasília 2026</h3>
+                            <span class="event-date">15 de março | 09:00 - 18:00</span>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-info">
+                                <strong>📍 Local:</strong>
+                                <span>Centro de Convenções Ulysses Guimarães, Setor de Hotelaria Sul</span>
+                            </div>
+                            <div class="event-schedule">
+                                <h4>Programação Destacada:</h4>
+                                <ul>
+                                    <li>09:00 - Keynote: "Futuro da IA"</li>
+                                    <li>10:30 - Trilhas paralelas</li>
+                                    <li>15:30 - Palestra: Segurança</li>
+                                    <li>17:00 - Networking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 2 -->
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>Python Day Brasília</h3>
+                            <span class="event-date">20 de abril | 10:00 - 16:00</span>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-info">
+                                <strong>📍 Local:</strong>
+                                <span>Universidade de Brasília (UnB), Campus Darcy Ribeiro</span>
+                            </div>
+                            <div class="event-schedule">
+                                <h4>Programação Destacada:</h4>
+                                <ul>
+                                    <li>10:30 - "Python na Produção"</li>
+                                    <li>11:30 - Workshop Django</li>
+                                    <li>14:00 - Data Science</li>
+                                    <li>15:00 - Discussão Comunidade</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 3 -->
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>JavaScript Conference DF</h3>
+                            <span class="event-date">12 de maio | 08:30 - 17:30</span>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-info">
+                                <strong>📍 Local:</strong>
+                                <span>Auditório Câmara dos Deputados, Esplanada dos Ministérios</span>
+                            </div>
+                            <div class="event-schedule">
+                                <h4>Programação Destacada:</h4>
+                                <ul>
+                                    <li>09:00 - Abertura</li>
+                                    <li>10:00 - React 2026</li>
+                                    <li>11:00 - Workshop Next.js</li>
+                                    <li>16:30 - Networking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 4 -->
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>DevOps Day Brasília</h3>
+                            <span class="event-date">8 de junho | 09:00 - 17:00</span>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-info">
+                                <strong>📍 Local:</strong>
+                                <span>Parque da Cidade, Auditório de Convenções</span>
+                            </div>
+                            <div class="event-schedule">
+                                <h4>Programação Destacada:</h4>
+                                <ul>
+                                    <li>09:30 - Kubernetes</li>
+                                    <li>10:30 - Workshop Docker</li>
+                                    <li>13:30 - CI/CD GitLab</li>
+                                    <li>16:00 - Encerramento</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event 5 -->
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>Startup & Innovation Week</h3>
+                            <span class="event-date">25-29 de julho | 08:00 - 18:00</span>
+                        </div>
+                        <div class="event-card-body">
+                            <div class="event-info">
+                                <strong>📍 Local:</strong>
+                                <span>Parque do Itiquira, Brasília - DF</span>
+                            </div>
+                            <div class="event-schedule">
+                                <h4>Programação Semanal:</h4>
+                                <ul>
+                                    <li>Dia 1: Pitchs de Startups</li>
+                                    <li>Dia 2: Workshops</li>
+                                    <li>Dia 3: Talks Investidores</li>
+                                    <li>Dia 5: Premiação</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Addresses Section -->
+        <section class="addresses-section" id="localizacao">
+            <div class="container">
+                <h2>🔗 Endereços Importantes e Transporte</h2>
+                
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Local</th>
+                                <th>Endereço</th>
+                                <th>Transporte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>UnB</strong></td>
+                                <td>Campus Darcy Ribeiro, Asa Norte</td>
+                                <td>Ônibus 114, 115</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Centro de Convenções</strong></td>
+                                <td>Setor de Hotelaria Sul</td>
+                                <td>Metrô: Estação Central</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Câmara dos Deputados</strong></td>
+                                <td>Esplanada dos Ministérios</td>
+                                <td>Ônibus direto</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parque da Cidade</strong></td>
+                                <td>SHLN, Brasília - DF</td>
+                                <td>Diversos ônibus</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parque do Itiquira</strong></td>
+                                <td>Asa Sul, Brasília - DF</td>
+                                <td>Ônibus 103, 104</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2>🌐 Categorias de Eventos</h2>
+                <div class="categories-grid">
+                    <div class="category-badge">🤖 Inteligência Artificial</div>
+                    <div class="category-badge">💻 Web & Mobile</div>
+                    <div class="category-badge">☁️ Cloud Computing</div>
+                    <div class="category-badge">📊 Data Science</div>
+                    <div class="category-badge">🔐 Segurança</div>
+                    <div class="category-badge">🚀 Startups</div>
+                    <div class="category-badge">🎓 Educação</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section">
+            <div class="container">
+                <h2>💡 Dicas Importantes</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">✓</div>
+                        <strong>Cadastro Antecipado</strong>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem;">Registre-se com antecedência para garantir seu lugar</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📄</div>
+                        <strong>Leve Documentos</strong>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem;">Documentos de identificação são obrigatórios</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">⏰</div>
+                        <strong>Chegue com Antecedência</strong>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem;">Reserve tempo para o trânsito de Brasília</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🤝</div>
+                        <strong>Conecte-se</strong>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem;">Aproveite o networking com profissionais</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📱</div>
+                        <strong>Siga-nos</strong>
+                        <p style="font-size: 0.95rem; margin-top: 0.5rem;">Fique atualizado sobre novos eventos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section">
+                    <h3>📧 Contato</h3>
+                    <p style="margin-bottom: 0.5rem;">contato@eventostechbrasilia.com.br</p>
+                    <p style="margin-bottom: 1rem; color: var(--light-purple);">Dúvidas? Entre em contato conosco!</p>
+                    <div class="social-links">
+                        <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn">💼</a>
+                        <a href="#" title="Twitter" aria-label="Twitter">𝕏</a>
+                    </div>
+                </section>
+                
+                <section class="footer-section">
+                    <h3>🔗 Links Úteis</h3>
+                    <a href="#eventos">Ver Eventos</a>
+                    <a href="#localizacao">Localização</a>
+                    <a href="#">Políticas de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </section>
+
+                <section class="footer-section">
+                    <h3>ℹ️ Informações</h3>
+                    <p>Portal de eventos de tecnologia gratuitos em Brasília 2026.</p>
+                    <p style="font-size: 0.9rem; color: var(--light-purple); margin-top: 1rem;">Desenvolvido com ❤️ para a comunidade tech de Brasília</p>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eventos Tech Brasília. Todos os direitos reservados. | Última atualização: 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.event-card, .tip-card, .objective-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
