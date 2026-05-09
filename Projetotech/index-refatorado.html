@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Busca de eventos de tecnologia em tempo real em Brasília com integração de múltiplas fontes">
+    <meta name="keywords" content="eventos, tecnologia, Brasília, busca, Python, JavaScript, DevOps, IA">
+    <meta name="theme-color" content="#00305e">
+    <title>Buscador de Eventos Tech - Design Sprint Federal</title>
+    
+    <link rel="stylesheet" href="styles-gov-br.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🏛️ Eventos Tech Brasília</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#search">Buscar</a></li>
+                    <li><a href="#footer">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>🚀 Buscador de Eventos de Tecnologia</h1>
+                <p>Encontre eventos reais de tecnologia em Brasília com busca em tempo real</p>
+            </div>
+        </section>
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section" id="search">
+            <div class="container">
+                <h2 style="color: var(--federal-blue); margin-bottom: 1.5rem;">🔍 Buscar Eventos</h2>
+                
+                <div class="search-container">
+                    <div class="search-filters">
+                        <div class="form-group">
+                            <label for="searchInput">Termo de Busca</label>
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                placeholder="Ex: Python, IA, DevOps..."
+                                aria-label="Termo de busca para eventos"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="categoryFilter">Categoria</label>
+                            <select id="categoryFilter" aria-label="Filtrar por categoria">
+                                <option value="">Todas as categorias</option>
+                                <option value="IA">🤖 Inteligência Artificial</option>
+                                <option value="Web">💻 Web & Mobile</option>
+                                <option value="Cloud">☁️ Cloud Computing</option>
+                                <option value="Data">📊 Data Science</option>
+                                <option value="Segurança">🔐 Segurança</option>
+                                <option value="DevOps">🐳 DevOps</option>
+                                <option value="Startups">🚀 Startups</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateFilter">Data</label>
+                            <input 
+                                type="date" 
+                                id="dateFilter"
+                                aria-label="Filtrar por data do evento"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="justify-content: flex-end;">
+                        <button id="searchBtn" class="gov-btn btn-primary" style="height: 44px;">
+                            🔍 Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <button id="clearFiltersBtn" class="gov-btn btn-secondary" style="margin-top: 1rem;">
+                    ✕ Limpar Filtros
+                </button>
+
+                <!-- Active Filters Display -->
+                <div id="activeFilters" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- EVENTS CONTAINER -->
+        <section class="container" style="margin-bottom: 4rem;">
+            <h2 style="color: var(--federal-blue); margin-bottom: 2rem; margin-top: 2rem;">
+                📅 Eventos Encontrados
+            </h2>
+            <div id="eventsContainer">
+                <!-- Eventos serão renderizados aqui via JavaScript -->
+                <div class="no-results">
+                    <p>Carregando eventos...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section">
+                    <h3>📧 Contato</h3>
+                    <p>contato@eventostechbrasilia.com.br</p>
+                </section>
+                
+                <section class="footer-section">
+                    <h3>🔗 Links Úteis</h3>
+                    <a href="#search">Buscar Eventos</a>
+                    <a href="https://www.gov.br/ds/home" target="_blank" rel="noopener noreferrer">
+                        Design System Gov.br
+                    </a>
+                </section>
+
+                <section class="footer-section">
+                    <h3>ℹ️ Informações</h3>
+                    <p>Desenvolvido com ❤️ para a comunidade tech de Brasília</p>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Eventos Tech Brasília. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="api-service.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Analytics (opcional) -->
+    <script>
+        // Rastrear buscas para analytics
+        if (window.app) {
+            const originalSearch = window.app.performSearch;
+            window.app.performSearch = function() {
+                console.log('Busca realizada:', this.currentFilters);
+                originalSearch.call(this);
+            };
+        }
+    </script>
+</body>
+</html>
